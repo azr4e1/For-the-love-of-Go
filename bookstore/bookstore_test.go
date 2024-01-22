@@ -68,10 +68,9 @@ func TestGetBook(t *testing.T) {
 		Title: "For the Love of Go",
 		ID:    1,
 	}
-	catalog := []bookstore.Book{
-		{Title: "The Hunger Games",
-			ID: 2},
-		want,
+	catalog := map[int]bookstore.Book{
+		1: {ID: 1, Title: "For the Love of Go"},
+		2: {ID: 1, Title: "The Power of Go: Tools"},
 	}
 	got, _ := bookstore.GetBook(catalog, 1)
 	if !cmp.Equal(want, got) {
