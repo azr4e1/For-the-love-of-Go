@@ -94,3 +94,16 @@ func TestGetBookError(t *testing.T) {
 		t.Fatal("want error for non-existent ID, got nil")
 	}
 }
+
+func TestNetPriceCents(t *testing.T) {
+	t.Parallel()
+	b := bookstore.Book{
+		PriceCents:      300,
+		DiscountPercent: 30,
+	}
+	var want int = 210
+	got := bookstore.NetPriceCents(b)
+	if got != want {
+		t.Errorf("original price: %d, discount: %d, want %d but got %d", b.PriceCents, b.DiscountPercent, want, got)
+	}
+}
