@@ -1,10 +1,17 @@
 package mytypes
 
-import "strings"
+import (
+	"strings"
+)
 
 type MyInt int
 type MyString string
-type MyBuilder strings.Builder
+type MyBuilder struct {
+	Contents strings.Builder
+}
+type StringUppercaser struct {
+	Contents strings.Builder
+}
 
 // Twice multiplies its receiver by 2 and returns the result.
 func (i MyInt) Twice() MyInt {
@@ -17,4 +24,8 @@ func (s MyString) Len() int {
 
 func (mb MyBuilder) Hello() string {
 	return "Hello, Gophers!"
+}
+
+func (mb StringUppercaser) ToUpper() string {
+	return strings.ToUpper(mb.Contents.String())
 }
