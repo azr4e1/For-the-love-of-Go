@@ -13,6 +13,7 @@ type Book struct {
 	PriceCents      int
 	DiscountPercent int
 }
+type Catalog map[int]Book
 
 func Buy(b Book) (Book, error) {
 	// var newBook Book = Book{
@@ -29,24 +30,31 @@ func Buy(b Book) (Book, error) {
 	return b, nil
 }
 
-func GetAllBooks(catalog map[int]Book) []Book {
+func (c Catalog) GetAllBooks() []Book {
 	var books []Book
-	for _, b := range catalog {
+	for _, b := range c {
 		books = append(books, b)
 	}
 	return books
 }
 
-func GetBook(catalog map[int]Book, id int) (Book, error) {
-	b, ok := catalog[id]
+func (c Catalog) GetBook(id int) (Book, error) {
+	b, ok := c[id]
 	if !ok {
 		return Book{}, fmt.Errorf("ID %d not found in catalog.", id)
 	}
 	return b, nil
 }
 
-func NetPriceCents(b Book) int {
-	actual_price := b.PriceCents * (100 - b.DiscountPercent) / 100
+// func NetPriceCents(b Book) int {
+// 	actual_price := b.PriceCents * (100 - b.DiscountPercent) / 100
 
-	return actual_price
+// 	return actual_price
+// }
+
+// Method of the Book type
+// that returns discounted price
+func (b Book) NetPriceCents() int {
+	saving := b.PriceCents * b.DiscountPercent / 100
+	return b.PriceCents - saving
 }
