@@ -29,3 +29,10 @@ func (mb MyBuilder) Hello() string {
 func (mb StringUppercaser) ToUpper() string {
 	return strings.ToUpper(mb.Contents.String())
 }
+
+//	func Double(input *int) {
+//		*input *= 2
+//	}
+func (p *MyInt) Double() {
+	*p *= 2
+}
