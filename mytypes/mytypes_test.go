@@ -83,11 +83,11 @@ func TestMyBuilder(t *testing.T) {
 
 func TestStringUppercaser(t *testing.T) {
 	t.Parallel()
-	var mb mytypes.StringUppercaser
-	mb.Contents.WriteString("hello, ")
-	mb.Contents.WriteString("gophers!")
+	var su mytypes.StringUppercaser
+	su.Contents.WriteString("hello, ")
+	su.Contents.WriteString("gophers!")
 	want := "HELLO, GOPHERS!"
-	got := mb.ToUpper()
+	got := su.ToUpper()
 	if want != got {
 		t.Errorf("want %q, got %q", want, got)
 	}

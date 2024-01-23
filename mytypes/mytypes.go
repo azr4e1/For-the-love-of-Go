@@ -26,8 +26,8 @@ func (mb MyBuilder) Hello() string {
 	return "Hello, Gophers!"
 }
 
-func (mb StringUppercaser) ToUpper() string {
-	return strings.ToUpper(mb.Contents.String())
+func (su StringUppercaser) ToUpper() string {
+	return strings.ToUpper(su.Contents.String())
 }
 
 //	func Double(input *int) {
