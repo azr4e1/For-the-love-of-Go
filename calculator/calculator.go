@@ -18,10 +18,14 @@ func Subtract(a, b float64) float64 {
 	return a - b
 }
 
+// Multiply takes two numbers a and b, and
+// returns the result of multiplying a and b.
 func Multiply(a, b float64) float64 {
 	return a * b
 }
 
+// Divide takes two numbers a and b, and
+// returns the result of dividing a with b.
 func Divide(a, b float64) (float64, error) {
 	if b == 0 {
 		return 0, errors.New("division by zero no allowed")
@@ -29,6 +33,8 @@ func Divide(a, b float64) (float64, error) {
 	return a / b, nil
 }
 
+// SquareRoot takes one number a, and
+// returns the result of calculating its square root.
 func SquareRoot(a float64) (float64, error) {
 	if a < 0 {
 		return 0, errors.New("square root of negative numbers not allowed.")
