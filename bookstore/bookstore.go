@@ -12,8 +12,23 @@ type Book struct {
 	ID              int
 	PriceCents      int
 	DiscountPercent int
+	category        Category
 }
+
 type Catalog map[int]Book
+type Category int
+
+const (
+	CategoryAutobiography Category = iota
+	CategoryLargePrintRomance
+	CategoryParticlePhysics
+)
+
+var validCategory = map[Category]bool{
+	CategoryAutobiography:     true,
+	CategoryLargePrintRomance: true,
+	CategoryParticlePhysics:   true,
+}
 
 func Buy(b Book) (Book, error) {
 	// var newBook Book = Book{
@@ -57,4 +72,26 @@ func (c Catalog) GetBook(id int) (Book, error) {
 func (b Book) NetPriceCents() int {
 	saving := b.PriceCents * b.DiscountPercent / 100
 	return b.PriceCents - saving
+}
+
+func (b *Book) SetPriceCents(newPrice int) error {
+	if newPrice < 0 {
+		return fmt.Errorf("%d is invalid value for book price.", newPrice)
+	}
+	// automatic dereferencing
+	b.PriceCents = newPrice
+	return nil
+}
+
+func (b Book) Category() Category {
+	return b.category
+}
+
+func (b *Book) SetCategory(category Category) error {
+	if validCategory[category] {
+		b.category = category
+		return nil
+	} else {
+		return fmt.Errorf("Unknown category %v", category)
+	}
 }
