@@ -80,3 +80,7 @@ func Withdraw(balance, withdraw int) (int, error) {
 
 	return value, nil
 }
+
+func Apply(x int, y func(int) int) int {
+	return y(x)
+}
