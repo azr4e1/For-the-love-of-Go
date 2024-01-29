@@ -41,3 +41,12 @@ func SquareRoot(a float64) (float64, error) {
 	}
 	return math.Sqrt(a), nil
 }
+
+func AddMany(inputs ...float64) float64 {
+	var total float64
+	for _, input := range inputs {
+		total += input
+	}
+
+	return total
+}

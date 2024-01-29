@@ -140,3 +140,12 @@ func TestSquareRootInvalid(t *testing.T) {
 		t.Error("Want error for invalid input, got nil")
 	}
 }
+
+func TestAddMany(t *testing.T) {
+	t.Parallel()
+	var want float64 = 16
+	got := calculator.AddMany(1, 2, 3, 4, 6)
+	if got != want {
+		t.Errorf("got %f, want %f", got, want)
+	}
+}
